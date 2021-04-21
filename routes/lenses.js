@@ -10,7 +10,7 @@ router.get('/new',(req,res)=>{
 
 router.get('/:id', async (req,res)=>{
     const lens = await Lens.findById(req.params.id)
-    if(article == null)res.redirect('/')
+    if(lens == null)res.redirect('/')
     res.render('lenses/show',{lens:lens})
 })
 
