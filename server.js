@@ -34,6 +34,10 @@ app.get('/',async(req,res)=>{
     
 })
 
+// app.get('/buy',(req,res)=>{
+//     res.redirect('ebay.com');
+// })
+
 app.use('/lenses',lensRouter)
 
 app.listen(port,()=>{

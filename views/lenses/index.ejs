@@ -10,8 +10,10 @@
 </head>
 <body>
 
-    <div class="container">
-        <h1 class="mb-4"> Valuable Lens Collection</h1>
+    <div class="container ">
+      <div class=" justify-content-center">
+  
+        <h1 style="text-align: center" class="mb-4"> Valuable Lens Collection</h1>
         <a href="/lenses/new" class="btn btn-success"> Add New Lens</a>
                 
         <% lenses.forEach(lens => { %>
@@ -20,15 +22,18 @@
                 <h4 class="card-title"><%= lens.Name %></h4>
                 <!--BUILDDATE-->
                 <div class="card-subtitle text-muted mb-2">
-                    <%= lens.BuildDate %>
+                   Year: <%= lens.BuildDate %>
                 </div>
                 <!--DESCRIPTION-->
                 <div class="card-text mb-2"><%= lens.Description %></div>
+                <div class="card-text mb-2">$<%= lens.Price%></div>
                 <a href="lenses/<%=lens.id%>" class="btn btn-primary">Learn More</a>
+                <a href="lenses/<%=lens.id%>/buy" class="btn btn-success">Buy</a>
               </div>
             </div>
 
         <% }) %>
+      </div>
     </div>
 </body>
 </html>

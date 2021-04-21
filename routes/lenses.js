@@ -10,13 +10,24 @@ router.get('/new',(req,res)=>{
 
 
 router.get('/all',async(req,res)=>{
-    const t = await Lens.find()
+    //const t = await Lens.find()
     res.redirect('/')
 })
-router.get('/:id', async (req,res)=>{
+
+
+router.get('/:id', async (req,res,next)=>{
     const lens = await Lens.findById(req.params.id)
     if(lens == null)res.redirect('/')
     res.render('lenses/show',{lens:lens})
+    
+})
+
+
+router.get('/buy', async (req,res,next)=>{
+    //const lens = await Lens.findById(req.params.id)
+    //const searchQuery = `${lens.Brand} ${lens.Name}`
+    res.render('/')
+
 })
 
 router.post('/',async (req,res)=>{
@@ -27,6 +38,7 @@ router.post('/',async (req,res)=>{
         Brand: req.body.Brand,
         BuildDate: req.body.BuildDate,
         Description: req.body.Description,
+        Price: req.body.Price
     })
     try{
         lensID = await lens.save()

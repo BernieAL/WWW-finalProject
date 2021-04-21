@@ -18,6 +18,10 @@ const lensSchema = new mongoose.Schema({
     Description: {
         type: String,
         required: true,
+    },
+    Price: {
+        type: Number,
+        required: true,
     }
 })
 
