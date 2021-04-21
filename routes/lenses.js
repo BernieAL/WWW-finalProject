@@ -8,6 +8,11 @@ router.get('/new',(req,res)=>{
     res.render('lenses/new-lens',{lens: new Lens()})
 })
 
+
+router.get('/all',async(req,res)=>{
+    const t = await Lens.find()
+    res.redirect('/')
+})
 router.get('/:id', async (req,res)=>{
     const lens = await Lens.findById(req.params.id)
     if(lens == null)res.redirect('/')
@@ -25,7 +30,7 @@ router.post('/',async (req,res)=>{
     })
     try{
         lensID = await lens.save()
-        res.redirect(`/lenses/${lensID}`)
+        res.redirect(`/lenses/all`)
     } catch(e){
         console.log(e)
         res.render('lenses/new-lens',{lens: lens})

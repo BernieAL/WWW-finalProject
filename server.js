@@ -4,6 +4,7 @@ const path = require("path");
 const lensRouter = require('./routes/lenses')
 const mongoose = require('mongoose')
 const chalk = require('chalk')
+const Lens = require('./models/lens-model')
 
 
 
@@ -26,19 +27,9 @@ app.use(express.urlencoded({ extended: false}))
 
 
 
-app.get('/',(req,res)=>{
-    const lenses = [{
-        name:'35mm F1.4 AI-S',
-        Brand: 'Nikon',
-        BuildDate: '1977',
-        Description: 'Prime 9 blade aperture'
-    },{
-        name:'35mm F1.4 AI-S',
-        Brand: 'Nikon',
-        BuildDate: '1977',
-        description: 'Prime 9 blade aperture'
-    },
-    ]
+app.get('/',async(req,res)=>{
+    
+    const lenses = await Lens.find()  //gets all articles
     res.render('lenses/index',{lenses: lenses})
     
 })
