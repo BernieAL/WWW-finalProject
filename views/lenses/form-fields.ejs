@@ -1,15 +1,18 @@
 <div class="form-group">
     
     <label for="Name">Lens Name</label>
-    <input required type="text" name="Name" id="Name" class="form-control ">
+    <input required value="<%= lens.Name%>" type="text" name="Name" id="Name" class="form-control ">
    
-    <label for="Name">Brand</label>
+    <label for="Brand">Brand</label>
     <input required type="text" name="Brand" id="Brand" class="form-control">
     
-    <label for="Name">BuildDate</label>
+    <label for="BuildDate">BuildDate</label>
     <input required type="text" name="BuildDate" id="BuildDate" class="form-control">
     
-    <label for="Name">Description</label>
+    <label for="Description">Description</label>
     <input required type="text" name="Description" id="Description" class="form-control">
 
-</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">ADD</button>
+    <a href="/" class="btn btn-secondary">Cancel</a>
