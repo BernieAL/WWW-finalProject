@@ -38,14 +38,14 @@ app.get('/new',(req,res)=>{
 app.get('/buy',async(req,res)=>{
     
     const lens = await Lens.findById(req.params.id)  
-    res.send('Opening External Buy Window...')
+    res.send('Opening External Buy Window For: ' + lens.Brand + ' ' + lens.Name + '...')
     await bot.Buy(lens)
     
 })
 app.get('/lenses/:id/buy',async(req,res)=>{
     
     const lens = await Lens.findById(req.params.id)  
-    res.send('Opening External Buy Window...')
+    res.send('Opening External Buy Window For: ' + lens.Brand + ' ' + lens.Name + '...')
     await bot.Buy(lens)
     
     
@@ -97,4 +97,5 @@ app.listen(port,()=>{
 
 
 
+/* NOTES */
 //https://stackoverflow.com/questions/43787515/making-external-get-request-with-express
