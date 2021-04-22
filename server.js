@@ -28,17 +28,78 @@ app.use(express.urlencoded({ extended: false}))
 
 
 app.get('/',async(req,res)=>{
-    
     const lenses = await Lens.find()  //gets all articles
     res.render('lenses/index',{lenses: lenses})
+})
+
+
+app.get('/new',(req,res)=>{
+    res.render('lenses/new-lens',{lens: new Lens()})
+})
+
+app.get('/buy',async(req,res)=>{
+    
+    const lens = await Lens.find()  //gets all articles
+    res.render('lenses/buy',{lens: lens})
     
 })
 
-// app.get('/buy',(req,res)=>{
-//     res.redirect('ebay.com');
+app.get('/lenses/:id/buy',async(req,res)=>{
+    
+    const lens = await Lens.find()  //gets all articles
+    res.render('lenses/buy',{lens: lens})
+    
+})
+
+
+
+// app.get('/',async(req,res)=>{
+//     //const t = await Lens.find()
+//     res.redirect('/')
 // })
 
-app.use('/lenses',lensRouter)
+
+app.get('/lenses/all',async(req,res)=>{
+    //const t = await Lens.find()
+    res.redirect('/')
+})
+
+
+// router.get('/buy',(req,res)=>{
+//     res.send(req.params.id)
+//     //const lens = await Lens.findById(req.params.id)
+//     //const searchQuery = `${lens.Brand} ${lens.Name}`
+//     res.render('/')
+
+// })
+
+app.get('/lenses/:id', async (req,res,next)=>{
+    const lens = await Lens.findById(req.params.id)
+    if(lens == null)res.redirect('/')
+    res.render('lenses/show',{lens:lens})
+    
+})
+
+app.post('/',async (req,res)=>{
+    
+    //make new lens using lens model
+    let lens = new Lens({
+        Name: req.body.Name,
+        Brand: req.body.Brand,
+        BuildDate: req.body.BuildDate,
+        Description: req.body.Description,
+        Price: req.body.Price
+    })
+    try{
+        lensID = await lens.save()
+        res.redirect(`/lenses/all`)
+    } catch(e){
+        console.log(e)
+        res.render('lenses/new-lens',{lens: lens})
+    }
+})
+
+//app.use('/lenses',lensRouter)
 
 app.listen(port,()=>{
     console.log(`App running at port: ${port}`)

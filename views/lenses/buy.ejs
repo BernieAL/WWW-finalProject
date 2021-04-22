@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="mb-4">Lens Name: <%= lens.Name %></h1>
+        <div class="text-muted mb-2">Brand<%= lens.Brand %></div>
+        <div class="text-muted mb-2">Description<%= lens.Description %></div>
+        <div class="text-muted mb-2">Price(Est)<%= lens.Price %></div>
+        <a href="/"class="btn btn-secondary">Back To All lenses</a>
+        <a href="lenses/<%=lens.id%>/buy"class="btn btn-info">Buy</a>
+        <!-- <a href="lenses/<%=lens.id%>"class="btn btn-info">Delete</a> -->
+    </div>
+</body>
+</html>
