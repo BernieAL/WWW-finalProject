@@ -20,13 +20,14 @@
             <div class="card mt-4">
               <div class="card-body">
                 <h4 class="card-title"><%= lens.Name %></h4>
+                <h5 class="card-title"><%= lens.Brand %></h5>
                 <!--BUILDDATE-->
                 <div class="card-subtitle text-muted mb-2">
                    Year: <%= lens.BuildDate %>
                 </div>
                 <!--DESCRIPTION-->
-                <div class="card-text mb-2"><%= lens.Description %></div>
-                <div class="card-text mb-2">Avg Price: $<%= lens.Price%></div>
+                <!-- <div class="card-text mb-2"><%= lens.Description %></div>
+                <div class="card-text mb-2">Avg Price: $<%= lens.Price%></div> -->
                 <a href="lenses/<%=lens.id%>" class="btn btn-primary">Learn More</a>
                 <a href="lenses/<%=lens.id%>/buy" class="btn btn-success">Buy</a>
               </div>
