@@ -1,10 +1,12 @@
 const express = require('express')
 const pug = require('ejs')
 const path = require("path");
-const lensRouter = require('./routes/lenses')
+//const lensRouter = require('./routes/lenses')
 const mongoose = require('mongoose')
 const chalk = require('chalk')
 const Lens = require('./models/lens-model')
+const bot = require('./botScript.js')
+var request = require('request');
 
 
 
@@ -45,8 +47,17 @@ app.get('/buy',async(req,res)=>{
 })
 app.get('/lenses/:id/buy',async(req,res)=>{
     
-    const lens = await Lens.find()  //gets all articles
-    res.render('lenses/buy',{lens: lens})
+    const lens = await Lens.findById(req.params.id)  //gets all articles
+    
+    //await bot.Buy(lens)
+
+    // request(`http://www.ebay.com/${lens.Name}`, function (error, response, body) {
+    //       console.log('error:', error); // Print the error if one occurred and handle it
+    //       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    //       res.send(body)
+    // });
+    
+   
 })
 
 
@@ -96,3 +107,7 @@ app.listen(port,()=>{
     console.log(`App running at port: ${port}`)
 })
 
+
+
+
+//https://stackoverflow.com/questions/43787515/making-external-get-request-with-express
