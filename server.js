@@ -6,6 +6,7 @@ const chalk = require('chalk')
 const Lens = require('./models/lens-model')
 const bot = require('./botScript.js')
 var request = require('request');
+const { findByIdAndUpdate, findById } = require('./models/lens-model');
 
 
 
@@ -34,7 +35,6 @@ app.get('/',async(req,res)=>{
 app.get('/new',(req,res)=>{
     res.render('lenses/new-lens',{lens: new Lens()})
 })
-
 app.get('/buy',async(req,res)=>{
     
     const lens = await Lens.findById(req.params.id)  
@@ -58,6 +58,24 @@ app.get('/lenses/:id/buy',async(req,res)=>{
 
 })
 
+
+app.get('/lenses/:id/delete',async(req,res)=>{
+    
+    const lens = await Lens.findByIdAndDelete(req.params.id)  
+    let message = {
+        text: 'deleted'
+    }
+    res.redirect('/')
+
+})
+
+app.get('/lenses/:id/update',async(req,res)=>{
+    
+    const lens = await Lens.findById(req.params.id)  
+    res.render('lenses/update',{lens:lens})
+})
+
+
 app.get('/lenses/all',async(req,res)=>{
     //const t = await Lens.find()
     res.redirect('/')
@@ -67,6 +85,24 @@ app.get('/lenses/:id', async (req,res,next)=>{
     const lens = await Lens.findById(req.params.id)
     if(lens == null)res.redirect('/')
     res.render('lenses/show',{lens:lens})
+    
+})
+
+//update
+app.post('/update/:id',async (req,res)=>{
+
+
+    var query = {'_id':req.params.id}
+    let lens = Lens.findById(req.params.id)
+    await lens.update({
+            Name: req.body.Name,
+            Brand: req.body.Brand,
+            BuildDate: req.body.BuildDate,
+            Description: req.body.Description,
+            Price: req.body.Price
+    })
+   await lens.save()
+   res.redirect('/')
     
 })
 

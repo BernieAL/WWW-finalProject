@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ADDING A NEW LENS</title>
+</head>
+<body>
+
+
+    <div class="container">
+    <h1 class="mb-4">Update For: <%=lens.Brand%> <%=lens.Name%></h1>
+    
+        <form action="/update/<%=lens.id%>?_method=PUT" method="POST">
+        <div class="form-group">
+
+            <h5>ID:  <%=lens.id%> </h5>
+           
+            <label for="Name">Lens Name</label>
+            <input type="text" placeholder="<%=lens.Name%>"  name="Name" id="Name" class="form-control ">
+        
+            <label for="Brand">Brand</label>
+            <input type="text" placeholder = "<%=lens.Brand%>" name="Brand" id="Brand" class="form-control">
+            
+            <label for="BuildDate">BuildDate</label>
+            <input type="text" placeholder="<%=lens.BuildDate%>" name="BuildDate" id="BuildDate" class="form-control">
+            
+            <label for="Description">Description</label>
+            <input type="text" placeholder="<%=lens.Description%>" name="Description" id="Description" class="form-control">
+
+            <label for="Price">Price (Est)</label>
+            <input type="number" placeholder="<%=lens.Price%>" name="Price" id="Price" class="form-control">
+        </div>
+
+            <button type="submit" class="btn btn-info">UPDATE</button>
+            <a href="/" class="btn btn-secondary">Cancel</a>
+
+
+        </div>
+        </div>
+    </div>
+</body>
+</html>
