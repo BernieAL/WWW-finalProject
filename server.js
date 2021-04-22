@@ -43,20 +43,11 @@ app.get('/buy',async(req,res)=>{
     res.render('lenses/buy',{lens: lens})
     
 })
-
 app.get('/lenses/:id/buy',async(req,res)=>{
     
     const lens = await Lens.find()  //gets all articles
     res.render('lenses/buy',{lens: lens})
-    
 })
-
-
-
-// app.get('/',async(req,res)=>{
-//     //const t = await Lens.find()
-//     res.redirect('/')
-// })
 
 
 app.get('/lenses/all',async(req,res)=>{
