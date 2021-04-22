@@ -91,18 +91,16 @@ app.get('/lenses/:id', async (req,res,next)=>{
 //update
 app.post('/update/:id',async (req,res)=>{
 
-
-    var query = {'_id':req.params.id}
-    let lens = Lens.findById(req.params.id)
-    await lens.update({
+    let lens = await Lens.findById(req.params.id)
+    await Lens.updateMany(lens,{
             Name: req.body.Name,
             Brand: req.body.Brand,
             BuildDate: req.body.BuildDate,
             Description: req.body.Description,
             Price: req.body.Price
     })
-   await lens.save()
-   res.redirect('/')
+    await lens.save()
+    res.redirect('/')
     
 })
 
